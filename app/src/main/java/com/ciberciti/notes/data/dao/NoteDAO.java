@@ -10,7 +10,7 @@ import java.util.List;
 public interface NoteDAO {
 
     @Insert
-    void Insert(Note note);
+    void insert(Note note);
 
     @Update
     void update(Note note);
@@ -23,7 +23,12 @@ public interface NoteDAO {
 
 
     @Query("SELECT * FROM Note WHERE noteId = :id")
-    LiveData<Note> getNote(String id);
+    LiveData<List<Note>> getNote(String id);
+
+    @Query("SELECT * FROM Note WHERE owner = :userId")
+    LiveData<Note> getUserNotes(String userId);
+
+
 
 
 }

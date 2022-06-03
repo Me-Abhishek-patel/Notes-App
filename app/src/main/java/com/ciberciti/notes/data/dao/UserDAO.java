@@ -9,7 +9,7 @@ import java.util.List;
 @Dao
 public interface UserDAO {
     @Insert
-    void Insert(User user);
+    void insert(User user);
 
     @Update
     void update(User user);
