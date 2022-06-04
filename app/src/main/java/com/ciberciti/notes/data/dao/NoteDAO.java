@@ -23,10 +23,10 @@ public interface NoteDAO {
 
 
     @Query("SELECT * FROM Note WHERE noteId = :id")
-    LiveData<List<Note>> getNote(String id);
+    LiveData<Note> getNote(int id);
 
     @Query("SELECT * FROM Note WHERE owner = :userId")
-    LiveData<Note> getUserNotes(String userId);
+    LiveData<List<Note>> getUserNotes(int userId);
 
 
 
