@@ -14,9 +14,13 @@
         android:theme="@style/Theme.Notes"
         tools:targetApi="31">
         <activity
+            android:name=".ui.notedetails.NoteDetailsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_note_details"/>
+        <activity
             android:name=".ui.addnote.AddNoteActivity"
             android:exported="false"
-            android:label="@string/title_activity_add_note"/>
+            android:label="@string/title_activity_add_note" />
         <activity
             android:name=".ui.auth.AuthActivity"
             android:exported="false"

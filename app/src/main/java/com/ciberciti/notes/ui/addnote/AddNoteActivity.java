@@ -29,7 +29,6 @@ public class AddNoteActivity extends AppCompatActivity {
 
     private void saveNote() {
         addNoteActivityViewModel.saveNote();
-
     }
 
     @Override

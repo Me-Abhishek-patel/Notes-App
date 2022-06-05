@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
@@ -18,10 +17,13 @@ import com.ciberciti.notes.data.entities.Note;
 import com.ciberciti.notes.databinding.ActivityMainBinding;
 import com.ciberciti.notes.ui.addnote.AddNoteActivity;
 import com.ciberciti.notes.ui.auth.AuthActivity;
+import com.ciberciti.notes.ui.notedetails.NoteDetailsActivity;
 import com.ciberciti.notes.ui.recyclerview.NotesAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.ciberciti.notes.utils.Constants.NOTE_ID;
 
 public class MainActivity extends AppCompatActivity implements NotesAdapter.OnItemClickListener {
 
@@ -107,7 +109,11 @@ public class MainActivity extends AppCompatActivity implements NotesAdapter.OnIt
 
     @Override
     public void onItemClick(Note note) {
-        Toast.makeText(this, note.getTitle(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, note.getTitle(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, NoteDetailsActivity.class);
+        intent.putExtra(NOTE_ID, note.noteId);
+        startActivity(intent);
+
     }
 
     public class MainActivityClickHandlers {

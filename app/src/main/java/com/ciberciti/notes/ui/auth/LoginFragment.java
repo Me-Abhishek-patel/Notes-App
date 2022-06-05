@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
@@ -49,11 +50,13 @@ public class LoginFragment extends Fragment {
         authViewModel.login().observe(getActivity(), new Observer<User>() {
             @Override
             public void onChanged(User user) {
-                if  (user != null) {
+                if (user != null) {
                     authViewModel.addSession(user.userId);
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     startActivity(intent);
                     getActivity().finish();
+                } else {
+                    Toast.makeText(getActivity(), "Invalid details", Toast.LENGTH_SHORT).show();
                 }
             }
         });

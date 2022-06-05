@@ -45,6 +45,7 @@ public class NotesRepository {
     }
 
 
+
     public void addNote(Note note) {
         new InsertNoteAsyncTask(noteDAO).execute(note);
     }
@@ -79,6 +80,25 @@ public class NotesRepository {
         protected Void doInBackground(Note... notes) {
 
             noteDAO.insert(notes[0]);
+            return null;
+        }
+    }
+
+    public void deleteNote(int noteId) {
+        new DeleteNoteAsyncTask(noteDAO).execute(noteId);
+    }
+
+    private static class DeleteNoteAsyncTask extends AsyncTask<Integer, Void, Void> {
+        private NoteDAO noteDAO;
+
+        public DeleteNoteAsyncTask(NoteDAO noteDAO) {
+            this.noteDAO = noteDAO;
+        }
+
+        @Override
+        protected Void doInBackground(Integer... integers) {
+
+            noteDAO.deleteByNoteId(integers[0]);
             return null;
         }
     }

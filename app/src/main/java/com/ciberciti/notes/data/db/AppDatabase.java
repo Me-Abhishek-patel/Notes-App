@@ -60,10 +60,10 @@ public abstract class AppDatabase extends RoomDatabase {
             userDAO.insert(new User(null, "Ashu", "9992439966", "emaisdfl@eyashoomail.com", "dfgsghag"));
             userDAO.insert(new User(null, "Abhi", "9999966", "email@email.com", "mypass"));
             userDAO.insert(new User(null, "Ashu", "9992439966", "emaisdfl@eyashoomail.com", "dfgsghag"));
-            noteDAO.insert(new Note(null, 1, "Note 1", "Descriptions simply dummy text of the printing and typ", new ImageList(Arrays.asList(""))));
-            noteDAO.insert(new Note(null, 1, "Note 2", "lorem50 simply dummy text of the",  new ImageList(Arrays.asList(""))));
-            noteDAO.insert(new Note(null, 1, "Note 3", "Lorem Ipsum esetting industry. Lorem Ipsum ",  new ImageList(Arrays.asList(""))));
-            noteDAO.insert(new Note(null, 1, "Note 4", "publishing software like Aldus PageMaker including versions of Lorem Ips",  new ImageList(Arrays.asList(""))));
+            noteDAO.insert(new Note(null, 1, "Note 1", "Descriptions simply dummy text of the printing and typ", new ImageList(Arrays.asList())));
+            noteDAO.insert(new Note(null, 1, "Note 2", "lorem50 simply dummy text of the",  new ImageList(Arrays.asList())));
+            noteDAO.insert(new Note(null, 1, "Note 3", "Lorem Ipsum esetting industry. Lorem Ipsum ",  new ImageList(Arrays.asList())));
+            noteDAO.insert(new Note(null, 1, "Note 4", "publishing software like Aldus PageMaker including versions of Lorem Ips",  new ImageList(Arrays.asList())));
             return null;
         }
     }

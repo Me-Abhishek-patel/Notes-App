@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.notedetails.NoteDetailsActivity">
+
+    <data>
+        <variable
+            name="noteDetailViewModel"
+            type="com.ciberciti.notes.ui.notedetails.NotesDetailsActivityViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvNoteTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="@{noteDetailViewModel.title}" />
+
+        <TextView
+            android:id="@+id/tvNewNoteDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="@{noteDetailViewModel.description}" />
+
+    </LinearLayout>
+
+</layout>

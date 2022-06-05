@@ -6,7 +6,7 @@ import android.util.Base64;
 import androidx.room.TypeConverter;
 
 import java.io.ByteArrayOutputStream;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ImageBitmapString {
@@ -35,7 +35,13 @@ public class ImageBitmapString {
 
     @TypeConverter
     public ImageList storedStringToImages(String value) {
-        List<String> list = Arrays.asList(value.split("\\s*,\\s*"));
+        List<Bitmap> list = new ArrayList<>();
+        for (String s : value.split("\\s*,\\s*")) {
+            Bitmap btmp = StringToBitMap(s);
+            list.add(btmp);
+        }
+
+
         return new ImageList(list);
     }
 
@@ -44,8 +50,10 @@ public class ImageBitmapString {
 
         StringBuilder value = new StringBuilder();
 
-        for (String str : imgeListWrapper.getImages())
+        for (Bitmap btmp : imgeListWrapper.getImages()) {
+            String str = BitMapToString(btmp);
             value.append(str).append(",");
+        }
 
         return value.toString();
     }

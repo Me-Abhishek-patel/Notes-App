@@ -28,6 +28,9 @@ public interface NoteDAO {
     @Query("SELECT * FROM Note WHERE owner = :userId")
     LiveData<List<Note>> getUserNotes(int userId);
 
+    @Query("DELETE FROM Note WHERE noteId = :noteId")
+    abstract void deleteByNoteId(long noteId);
+
 
 
 

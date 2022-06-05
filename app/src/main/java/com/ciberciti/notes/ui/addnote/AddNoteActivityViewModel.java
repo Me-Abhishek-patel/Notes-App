@@ -27,7 +27,7 @@ public class AddNoteActivityViewModel extends AndroidViewModel {
 //        Log.d(TAG, "saveNote: title " + this.title);
 //        Log.d(TAG, "saveNote: Description " + this.description);
 
-        Note note = new Note(null, notesRepository.getCurrentUserId(), this.title, this.description, new ImageList(Arrays.asList("")));
+        Note note = new Note(null, notesRepository.getCurrentUserId(), this.title, this.description, new ImageList(Arrays.asList()));
         notesRepository.addNote(note);
     }
 
