@@ -3,30 +3,35 @@ package com.ciberciti.notes.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.ciberciti.notes.R;
 import com.ciberciti.notes.data.entities.Note;
 import com.ciberciti.notes.databinding.ActivityMainBinding;
 import com.ciberciti.notes.ui.addnote.AddNoteActivity;
 import com.ciberciti.notes.ui.auth.AuthActivity;
+import com.ciberciti.notes.ui.recyclerview.NotesAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NotesAdapter.OnItemClickListener {
 
     private ActivityMainBinding binding;
 
     MainActivityViewModel mainActivityViewModel;
-    TextView textView;
     private MainActivityClickHandlers mainActivityClickHandlers;
+    ArrayList<Note> notes;
+    RecyclerView recyclerView;
+    NotesAdapter notesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,28 +40,35 @@ public class MainActivity extends AppCompatActivity {
         mainActivityClickHandlers = new MainActivityClickHandlers(this);
         binding.setMainActivityClickHandlers(mainActivityClickHandlers);
         setContentView(binding.getRoot());
-        textView = findViewById(R.id.tvTestData);
 
         mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
-        if (mainActivityViewModel.isUserLoggedIn())
-            Log.d("hai main", "onCreate: " + mainActivityViewModel.getCurrentUserId());
-        mainActivityViewModel.geUserNotes(mainActivityViewModel.getCurrentUserId()).observe(this, new Observer<List<Note>>() {
-            @Override
-            public void onChanged(List<Note> notes) {
-                StringBuilder sb = new StringBuilder();
-                for (Note note : notes) {
-                    sb.append("\ntitle: " + note.title);
-                    sb.append("\nDescription: " + note.description);
-                    sb.append("\n________________\n");
+        recyclerView = binding.rvUserNotes;
 
-                }
-                textView.setText(sb.toString());
-            }
-        });
+
+        loadUserNotes(mainActivityViewModel.getCurrentUserId());
 
         setSupportActionBar(binding.toolbar);
 
 
+    }
+
+    private void loadRecyclerView() {
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+        notesAdapter = new NotesAdapter();
+        recyclerView.setAdapter(notesAdapter);
+        notesAdapter.setListener(MainActivity.this);
+        notesAdapter.setNotes(notes);
+    }
+
+    private void loadUserNotes(int userId) {
+        mainActivityViewModel.geUserNotes(userId).observe(this, new Observer<List<Note>>() {
+            @Override
+            public void onChanged(List<Note> notes) {
+                MainActivity.this.notes = (ArrayList<Note>) notes;
+                loadRecyclerView();
+            }
+        });
     }
 
     @Override
@@ -91,6 +103,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, AuthActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void onItemClick(Note note) {
+        Toast.makeText(this, note.getTitle(), Toast.LENGTH_SHORT).show();
     }
 
     public class MainActivityClickHandlers {
