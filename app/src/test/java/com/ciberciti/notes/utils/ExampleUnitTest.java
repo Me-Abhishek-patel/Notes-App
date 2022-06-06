@@ -1,4 +1,4 @@
-package com.ciberciti.notes;
+package com.ciberciti.notes.utils;
 
 import org.junit.Test;
 
