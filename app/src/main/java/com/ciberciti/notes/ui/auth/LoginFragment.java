@@ -47,16 +47,36 @@ public class LoginFragment extends Fragment {
     }
 
     private void loginUser() {
-        authViewModel.login().observe(getActivity(), new Observer<User>() {
+        authViewModel.loginWithEmail().observe(getActivity(), new Observer<User>() {
             @Override
             public void onChanged(User user) {
-                if (user != null) {
-                    authViewModel.addSession(user.userId);
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                    startActivity(intent);
-                    getActivity().finish();
-                } else {
-                    Toast.makeText(getActivity(), "Invalid details", Toast.LENGTH_SHORT).show();
+                if (user != null && !isDetached()) {
+                    if (user.getPassword().equals(authViewModel.getPassword())) {
+                        authViewModel.addSession(user.userId);
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        startActivity(intent);
+                        if (getActivity() != null)
+                            getActivity().finish();
+                    }
+                }
+            }
+        });
+        authViewModel.loginWithMobile().observe(getActivity(), new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+//                Toast.makeText(getActivity(), "Mobile : LOgin Attempt", Toast.LENGTH_SHORT).show();
+                if (user != null && !isDetached()) {
+
+
+                    if (user.getPassword().equals(authViewModel.getPassword())) {
+                        authViewModel.addSession(user.userId);
+                        Toast.makeText(getActivity(), "Mobile : LOgin Attempt" + authViewModel.getPassword(), Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        startActivity(intent);
+                        if (getActivity() != null)
+                            getActivity().finish();
+                    }
                 }
             }
         });

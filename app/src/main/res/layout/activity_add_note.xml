@@ -8,6 +8,10 @@
         <variable
             name="viewModel"
             type="com.ciberciti.notes.ui.addnote.AddNoteActivityViewModel" />
+
+        <variable
+            name="clickHandler"
+            type="com.ciberciti.notes.ui.addnote.AddNoteActivity.AddNoteActivityClickHandlers" />
     </data>
 
 
@@ -37,13 +41,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-
+                app:errorEnabled="true"
                 android:hint="Title"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLength="100"
+
                     android:text="@={viewModel.title}" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -54,6 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                app:errorEnabled="true"
 
                 android:hint="Description"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -61,12 +68,24 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLength="1000"
+
                     android:text="@={viewModel.description}"
                     android:lines="5" />
 
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <Button
+                android:id="@+id/outlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add Image"
+                android:padding="8dp"
+                android:layout_margin="10dp"
+                android:onClick="@{clickHandler::onAddImageClicked}"
+                app:icon="@drawable/ic_baseline_add_photo_alternate_24"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvImagesAdd"
@@ -83,16 +102,13 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+            <!--            <ImageView-->
+            <!--                android:id="@+id/temp_iv"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:src="@drawable/placeholder_image" />-->
 
-            <Button
-                android:id="@+id/outlinedButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Add Image"
-                android:padding="8dp"
-                android:layout_margin="10dp"
-                app:icon="@drawable/ic_baseline_add_photo_alternate_24"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon" />
+
         </LinearLayout>
 
 

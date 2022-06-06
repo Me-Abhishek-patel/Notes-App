@@ -14,8 +14,9 @@ public class ImageBitmapString {
 
     @TypeConverter
     public static String BitMapToString(Bitmap bitmap) {
+        if (bitmap == null) return "";
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 70, baos);
         byte[] b = baos.toByteArray();
         return Base64.encodeToString(b, Base64.DEFAULT);
     }

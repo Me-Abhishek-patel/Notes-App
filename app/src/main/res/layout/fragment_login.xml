@@ -12,16 +12,20 @@
             type="com.ciberciti.notes.ui.auth.LoginFragment.LoginFragmentClickHandlers" />
     </data>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".ui.auth.LoginFragment">
+        android:layout_height="match_parent">
 
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".ui.auth.LoginFragment">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:textAlignment="center"
             android:text="Login" />
@@ -50,13 +54,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-
+            android:inputType="textPassword"
             android:hint="Password"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textPassword"
+
                 android:text="@={authViewModel.password}" />
 
 
@@ -74,5 +80,6 @@
             style="@style/Widget.MaterialComponents.Button.Icon" />
 
 
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </layout>

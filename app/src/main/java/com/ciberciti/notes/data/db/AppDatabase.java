@@ -54,6 +54,7 @@ public abstract class AppDatabase extends RoomDatabase {
         protected Void doInBackground(Void... voids) {
             this.userDAO = instance.userDAO();
             this.noteDAO = instance.noteDAO();
+            //dummy data for debugging
             userDAO.insert(new User(null, "Abhi", "9999966", "email@email.com", "mypass"));
             userDAO.insert(new User(null, "Ashu", "9992439966", "emaisdfl@eyashoomail.com", "dfgsghag"));
             userDAO.insert(new User(null, "Abhi", "9999966", "email@email.com", "mypass"));

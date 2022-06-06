@@ -1,6 +1,7 @@
 package com.ciberciti.notes.ui.notedetails;
 
 import android.app.Application;
+import android.graphics.Bitmap;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -18,7 +19,7 @@ public class NotesDetailsActivityViewModel extends AndroidViewModel {
 
     public String title;
     public String description;
-    ArrayList<ImageList> imageLists;
+    ArrayList<Bitmap> imageLists;
 
     public String getTitle() {
         return title;
@@ -36,16 +37,17 @@ public class NotesDetailsActivityViewModel extends AndroidViewModel {
         this.description = description;
     }
 
-    public ArrayList<ImageList> getImageLists() {
+    public ArrayList<Bitmap> getImageLists() {
         return imageLists;
     }
 
-    public void setImageLists(ArrayList<ImageList> imageLists) {
+    public void setImageLists(ArrayList<Bitmap> imageLists) {
         this.imageLists = imageLists;
     }
 
     public NotesDetailsActivityViewModel(@NonNull Application application) {
         super(application);
+        imageLists = new ArrayList<>();
         notesRepository = new NotesRepository(application);
     }
 

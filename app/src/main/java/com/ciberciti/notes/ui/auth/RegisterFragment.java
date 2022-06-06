@@ -68,6 +68,25 @@ public class RegisterFragment extends Fragment {
 
     }
 
+    private boolean isInputValid() {
+        if (!authViewModel.getValidator().validateIndianMobileNumber(authViewModel.getUserMobile())) {
+            binding.textFieldMobile.setError("Please Enter a Valid Mobile Number");
+            return false;
+        } else binding.textFieldMobile.setError(null);
+
+        if (!authViewModel.getValidator().validateEmailAddress(authViewModel.getUserEmail())) {
+            binding.textFieldEmail.setError("Please Enter a Valid Email Address");
+            return false;
+        } else binding.textFieldEmail.setError(null);
+
+        if (!authViewModel.getValidator().validatePassword(authViewModel.getPassword(), authViewModel.getUserName())) {
+            binding.textFieldPassword.setError("8-15 characters, should not contain your name, the first character should be lowercase," +
+                    " must contain at least 2 uppercase characters, 2 digits and 1 special character ");
+            return false;
+        } else binding.textFieldPassword.setError(null);
+        return true;
+    }
+
     public class RegisterFragmentClickHandlers {
         Context context;
 
@@ -76,7 +95,11 @@ public class RegisterFragment extends Fragment {
         }
 
         public void onRegisterClicked(View view) {
-            registerUser();
+            if (isInputValid())
+                registerUser();
+            binding.textFieldEmail.getEditText().setOnFocusChangeListener((view1, b) -> isInputValid());
+            binding.textFieldMobile.getEditText().setOnFocusChangeListener((view1, b) -> isInputValid());
+            binding.textFieldPassword.getEditText().setOnFocusChangeListener((view1, b) -> isInputValid());
 
         }
     }

@@ -1,27 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="authViewModel"
             type="com.ciberciti.notes.ui.auth.AuthViewModel" />
+
         <variable
             name="registerClickHandler"
             type="com.ciberciti.notes.ui.auth.RegisterFragment.RegisterFragmentClickHandlers" />
     </data>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".ui.auth.RegisterFragment">
+        android:layout_height="match_parent">
 
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".ui.auth.RegisterFragment">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:textAlignment="center"
             android:text="Register" />
@@ -31,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-
+            app:errorEnabled="true"
             android:hint="Name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -46,6 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            app:errorEnabled="true"
 
             android:hint="Mobile"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -63,6 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            app:errorEnabled="true"
 
             android:hint="Email"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -80,13 +88,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-
+            app:errorEnabled="true"
+            android:inputType="textPassword"
             android:hint="Password"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textPassword"
+
                 android:text="@={authViewModel.password}"/>
 
 
@@ -103,14 +114,15 @@
             android:text="Register"
             android:onClick="@{registerClickHandler::onRegisterClicked}"
             style="@style/Widget.MaterialComponents.Button.Icon" />
-<!--        <TextView-->
-<!--            android:id="@+id/tvRegister"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="10dp"-->
-<!--            android:textAlignment="center"-->
-<!--            android:text="@string/register_now" />-->
+            <!--        <TextView-->
+            <!--            android:id="@+id/tvRegister"-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_margin="10dp"-->
+            <!--            android:textAlignment="center"-->
+            <!--            android:text="@string/register_now" />-->
 
 
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </layout>

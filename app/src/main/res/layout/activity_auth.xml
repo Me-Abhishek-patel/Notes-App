@@ -7,27 +7,36 @@
         <variable
             name="authViewModel"
             type="com.ciberciti.notes.ui.auth.AuthViewModel" />
+
+        <variable
+            name="clickHandler"
+            type="com.ciberciti.notes.ui.auth.AuthActivity.AuthActivityClickHandler" />
     </data>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".ui.auth.AuthActivity">
+        android:layout_height="match_parent">
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_container_view"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".ui.auth.AuthActivity">
 
-        <TextView
-            android:id="@+id/tvRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:textAlignment="center"
-            android:text="@string/register_now" />
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragment_container_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tvRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textAlignment="center"
+                android:onClick="@{clickHandler::onSwitcherClicked}"
+                android:text="@{authViewModel.switcherText}" />
 
+        </LinearLayout>
+    </ScrollView>
 </layout>

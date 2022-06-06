@@ -103,6 +103,25 @@ public class NotesRepository {
         }
     }
 
+    public void updateNote(Note note) {
+        new UpdateNoteAsyncTask(noteDAO).execute(note);
+    }
+
+    private static class UpdateNoteAsyncTask extends AsyncTask<Note, Void, Void> {
+        private NoteDAO noteDAO;
+
+        public UpdateNoteAsyncTask(NoteDAO noteDAO) {
+            this.noteDAO = noteDAO;
+        }
+
+        @Override
+        protected Void doInBackground(Note... notes) {
+
+            noteDAO.update(notes[0]);
+            return null;
+        }
+    }
+
     public boolean isUserLoggedIn() {
         return preferenceProvider.isUserLoggedIn();
     }

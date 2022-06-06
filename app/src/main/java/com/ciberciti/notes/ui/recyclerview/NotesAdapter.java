@@ -18,7 +18,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
     ArrayList<Note> notes = new ArrayList<>();
     private OnItemClickListener listener;
 
-
     public void setListener(OnItemClickListener listener) {
         this.listener = listener;
     }
@@ -39,8 +38,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
     @Override
     public void onBindViewHolder(@NonNull NoteViewHolder holder, int position) {
         Note note = notes.get(position);
-        //TODO: inset image in list item
-        // holder.iv.setImageResource();
+        if (!note.getImages().getImages().isEmpty())
+            holder.iv.setImageBitmap(note.getImages().getImages().get(note.getImages().getImages().size()-1));
+        else holder.iv.setImageResource(R.drawable.placeholder_image);
         holder.itemBinding.setNote(note);
     }
 
@@ -74,5 +74,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
 
 
     }
+
 
 }

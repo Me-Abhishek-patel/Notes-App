@@ -2,6 +2,7 @@ package com.ciberciti.notes.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.CursorWindow;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,6 +21,7 @@ import com.ciberciti.notes.ui.auth.AuthActivity;
 import com.ciberciti.notes.ui.notedetails.NoteDetailsActivity;
 import com.ciberciti.notes.ui.recyclerview.NotesAdapter;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,11 +47,16 @@ public class MainActivity extends AppCompatActivity implements NotesAdapter.OnIt
 
         mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
         recyclerView = binding.rvUserNotes;
-
-
         loadUserNotes(mainActivityViewModel.getCurrentUserId());
 
         setSupportActionBar(binding.toolbar);
+        try {
+            Field field = CursorWindow.class.getDeclaredField("sCursorWindowSize");
+            field.setAccessible(true);
+            field.set(null, 100 * 1024 * 1024); //the 100MB is the new size
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }
