@@ -1,46 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="note"
             type="com.ciberciti.notes.data.entities.Note" />
     </data>
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        app:cardCornerRadius="8dp"
+        android:elevation="0dp"
+
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="4dp"
-            android:padding="2dp"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:background="@drawable/rv_item_bg">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{note.title}" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{note.description}" />
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:padding="2dp"
+
+
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLength="12"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="@{note.title}" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLength="80"
+                    android:alpha=".7"
+                    android:text="@{note.description}"
+                    android:fontFamily="@font/poppins" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_note_item"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_weight="2"
+                android:layout_margin="4dp"
+                android:foregroundGravity="center|right"
+                android:src="@drawable/placeholder_image"
+                android:layout_gravity="right|center"
+
+                />
+
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/iv_note_item"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_weight="2"
-            android:layout_margin="4dp"
-            android:src="@drawable/placeholder_image"
-            android:layout_gravity="right"
-
-            />
-
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </layout>

@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:textAlignment="center"
-                android:text="Add Note" />
+             />
 
 
             <com.google.android.material.textfield.TextInputLayout

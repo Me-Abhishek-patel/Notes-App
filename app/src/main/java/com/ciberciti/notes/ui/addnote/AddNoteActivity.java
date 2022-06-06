@@ -42,7 +42,6 @@ public class AddNoteActivity extends AppCompatActivity {
     ActivityAddNoteBinding binding;
 
     AddNoteActivityClickHandlers addNoteActivityClickHandlers;
-    ArrayList<Bitmap> bitmaps;
     RecyclerView recyclerView;
     ImageAdapter imageAdapter;
 
@@ -127,11 +126,10 @@ public class AddNoteActivity extends AppCompatActivity {
     }
 
     private void loadRecyclerView() {
-        bitmaps = addNoteActivityViewModel.getImageLists();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         imageAdapter = new ImageAdapter();
         recyclerView.setAdapter(imageAdapter);
-        imageAdapter.setBitmaps(bitmaps);
+        imageAdapter.setBitmaps(addNoteActivityViewModel.getImageLists());
     }
 
     private void saveNote() {

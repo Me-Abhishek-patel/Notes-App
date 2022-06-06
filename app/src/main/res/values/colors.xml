@@ -6,5 +6,13 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+    <color name="orange">#ff4655</color>
+    <color name="bluedark">#0b0d2d</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="bluelight">#181b29</color>
+    <color name="mid">#2c3143</color>
+    <color name="button_clr">#6f96b5</color>
+    <color name="pink_clr">#e180cd</color>
+    <color name="primary">#6f6fc8</color>
+    <color name="background">#1f1d2b</color>
 </resources>

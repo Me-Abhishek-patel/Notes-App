@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/abhis/Desktop/AndroidProjects/Notes/app/src/main/res/drawable/ic_baseline_add_photo_alternate_24.xml" value="0.1605" />
+        <entry key="..\:/Users/abhis/Desktop/AndroidProjects/Notes/app/src/main/res/drawable/ic_baseline_delete_outline_24.xml" value="0.1605" />
+        <entry key="..\:/Users/abhis/Desktop/AndroidProjects/Notes/app/src/main/res/drawable/ic_note_add_24.xml" value="0.1605" />
+        <entry key="..\:/Users/abhis/Desktop/AndroidProjects/Notes/app/src/main/res/drawable/rv_item_bg.xml" value="0.1605" />
         <entry key="..\:/Users/abhis/Desktop/AndroidProjects/Notes/app/src/main/res/layout/activity_add_note.xml" value="0.11674008810572688" />
         <entry key="..\:/Users/abhis/Desktop/AndroidProjects/Notes/app/src/main/res/layout/activity_auth.xml" value="0.1515625" />
         <entry key="..\:/Users/abhis/Desktop/AndroidProjects/Notes/app/src/main/res/layout/activity_main.xml" value="0.1515625" />
@@ -11,8 +15,10 @@
         <entry key="..\:/Users/abhis/Desktop/AndroidProjects/Notes/app/src/main/res/layout/fragment_first.xml" value="0.1515625" />
         <entry key="..\:/Users/abhis/Desktop/AndroidProjects/Notes/app/src/main/res/layout/fragment_login.xml" value="0.1375" />
         <entry key="..\:/Users/abhis/Desktop/AndroidProjects/Notes/app/src/main/res/layout/fragment_register.xml" value="0.1515625" />
+        <entry key="..\:/Users/abhis/Desktop/AndroidProjects/Notes/app/src/main/res/layout/gradient_bg.xml" value="0.16979166666666667" />
         <entry key="..\:/Users/abhis/Desktop/AndroidProjects/Notes/app/src/main/res/layout/image_item.xml" value="0.12916666666666668" />
         <entry key="..\:/Users/abhis/Desktop/AndroidProjects/Notes/app/src/main/res/layout/layout.xml" value="0.16458333333333333" />
+        <entry key="..\:/Users/abhis/Desktop/AndroidProjects/Notes/app/src/main/res/layout/rv_item_bg.xml" value="0.17135416666666667" />
         <entry key="..\:/Users/abhis/Desktop/AndroidProjects/Notes/app/src/main/res/layout/rv_list_item.xml" value="0.14322916666666666" />
         <entry key="..\:/Users/abhis/Desktop/AndroidProjects/Notes/app/src/main/res/menu/menu_add_note.xml" value="0.1" />
         <entry key="..\:/Users/abhis/Desktop/AndroidProjects/Notes/app/src/main/res/menu/menu_main.xml" value="0.23645833333333333" />

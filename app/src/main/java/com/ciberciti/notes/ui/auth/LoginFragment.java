@@ -3,10 +3,10 @@ package com.ciberciti.notes.ui.auth;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
@@ -51,7 +51,8 @@ public class LoginFragment extends Fragment {
             @Override
             public void onChanged(User user) {
                 if (user != null && !isDetached()) {
-                    if (user.getPassword().equals(authViewModel.getPassword())) {
+                    if (user.getPassword().equals(authViewModel.md5(authViewModel.getPassword()))) {
+                        Log.d("abhishek patel", "onChanged2: "+user.password);
                         authViewModel.addSession(user.userId);
                         Intent intent = new Intent(getActivity(), MainActivity.class);
                         startActivity(intent);
@@ -68,7 +69,7 @@ public class LoginFragment extends Fragment {
                 if (user != null && !isDetached()) {
 
 
-                    if (user.getPassword().equals(authViewModel.getPassword())) {
+                    if (user.getPassword().equals(authViewModel.md5(authViewModel.getPassword()))) {
                         authViewModel.addSession(user.userId);
                         Intent intent = new Intent(getActivity(), MainActivity.class);
                         startActivity(intent);
