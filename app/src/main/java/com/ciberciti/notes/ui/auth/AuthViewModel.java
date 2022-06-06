@@ -1,6 +1,7 @@
 package com.ciberciti.notes.ui.auth;
 
 import android.app.Application;
+import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -83,6 +84,7 @@ public class AuthViewModel extends AndroidViewModel {
     }
 
     public LiveData<User> loginWithMobile() {
+        Log.d("abhishek patel TAG", "loginWithMobile: ");
         return repository.getUserWithMobileNumber(userEmail);
     }
 
@@ -131,5 +133,9 @@ public class AuthViewModel extends AndroidViewModel {
         repository.addUser(user);
         return repository.getUserWithEmail(user.getEmail());
 
+    }
+
+    boolean isMobile() {
+        return validator.validateIndianMobileNumber(userEmail);
     }
 }

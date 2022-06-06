@@ -3,10 +3,10 @@ package com.ciberciti.notes.ui.auth;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
@@ -47,38 +47,37 @@ public class LoginFragment extends Fragment {
     }
 
     private void loginUser() {
-        authViewModel.loginWithEmail().observe(getActivity(), new Observer<User>() {
-            @Override
-            public void onChanged(User user) {
-                if (user != null && !isDetached()) {
-                    if (user.getPassword().equals(authViewModel.md5(authViewModel.getPassword()))) {
-                        Log.d("abhishek patel", "onChanged2: "+user.password);
+        if (!authViewModel.isMobile()) {
+            authViewModel.loginWithEmail().observe(getActivity(), new Observer<User>() {
+                @Override
+                public void onChanged(User user) {
+                    if (user != null && !isDetached() && user.getPassword().equals(authViewModel.md5(authViewModel.getPassword()))) {
                         authViewModel.addSession(user.userId);
                         Intent intent = new Intent(getActivity(), MainActivity.class);
                         startActivity(intent);
                         if (getActivity() != null)
                             getActivity().finish();
-                    }
+                    } else
+                        Toast.makeText(getActivity(), "Invalid Credentials1", Toast.LENGTH_SHORT).show();
+
                 }
-            }
-        });
-        authViewModel.loginWithMobile().observe(getActivity(), new Observer<User>() {
-            @Override
-            public void onChanged(User user) {
-//                Toast.makeText(getActivity(), "Mobile : LOgin Attempt", Toast.LENGTH_SHORT).show();
-                if (user != null && !isDetached()) {
+            });
+        } else {
+            authViewModel.loginWithMobile().observe(getActivity(), new Observer<User>() {
+                @Override
+                public void onChanged(User user) {
 
-
-                    if (user.getPassword().equals(authViewModel.md5(authViewModel.getPassword()))) {
+                    if (user != null && !isDetached() && user.getPassword().equals(authViewModel.md5(authViewModel.getPassword()))) {
                         authViewModel.addSession(user.userId);
                         Intent intent = new Intent(getActivity(), MainActivity.class);
                         startActivity(intent);
                         if (getActivity() != null)
                             getActivity().finish();
-                    }
+                    } else
+                        Toast.makeText(getActivity(), "Invalid Credentials2", Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
+            });
+        }
     }
 
     public class LoginFragmentClickHandlers {
@@ -92,5 +91,6 @@ public class LoginFragment extends Fragment {
             loginUser();
         }
     }
+
 
 }

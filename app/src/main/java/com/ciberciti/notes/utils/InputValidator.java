@@ -11,7 +11,7 @@ public class InputValidator {
 
     public boolean validateEmailAddress(String email) {
         if (email == null) return false;
-        Pattern pattern = Pattern.compile("[a-z0-9A-Z]{4,25}@[a-zA-Z]{4,25}\\.[a-zA-Z]{2,6}");
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9+_.-]+@[a-zA-Z]{4,25}\\.[a-zA-Z]{2,6}");
         return pattern.matcher(email).matches();
     }
 
