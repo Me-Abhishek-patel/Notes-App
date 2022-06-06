@@ -50,7 +50,7 @@ public class RegisterFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        authViewModel.userEmail = "";
+
     }
 
     private void registerUser() {

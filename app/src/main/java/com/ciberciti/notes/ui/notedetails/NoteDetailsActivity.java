@@ -1,10 +1,12 @@
 package com.ciberciti.notes.ui.notedetails;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
@@ -86,8 +88,19 @@ public class NoteDetailsActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_delete) {
-            notesDetailsActivityViewModel.deleteNote();
-            finish();
+            new AlertDialog.Builder(this)
+                    .setTitle("DELETE")
+                    .setMessage("Do you really want to delete?")
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            notesDetailsActivityViewModel.deleteNote();
+                            finish();
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, null).show();
+
             return true;
         }
         if (id == R.id.action_edit) {

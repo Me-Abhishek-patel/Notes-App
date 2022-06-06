@@ -9,6 +9,9 @@ import com.ciberciti.notes.data.entities.User;
 import com.ciberciti.notes.repository.NotesRepository;
 import com.ciberciti.notes.utils.InputValidator;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 
 public class AuthViewModel extends AndroidViewModel {
     public Integer userId = null;
@@ -45,11 +48,26 @@ public class AuthViewModel extends AndroidViewModel {
         this.validator = validator;
     }
 
-    public LiveData<User> register() {
-        User user = new User(null, userName, userMobile, userEmail, password);
-        repository.addUser(user);
-        return repository.getUserWithEmail(user.getEmail());
+    public static final String md5(final String s) {
+        final String MD5 = "MD5";
+        try {
+            MessageDigest digest = java.security.MessageDigest.getInstance(MD5);
+            digest.update(s.getBytes());
+            byte messageDigest[] = digest.digest();
 
+
+            StringBuilder hexString = new StringBuilder();
+            for (byte aMessageDigest : messageDigest) {
+                String h = Integer.toHexString(0xFF & aMessageDigest);
+                while (h.length() < 2)
+                    h = "0" + h;
+                hexString.append(h);
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     public boolean isUserLoggedIn() {
@@ -106,5 +124,12 @@ public class AuthViewModel extends AndroidViewModel {
 
     public void setSwitcherText(String text) {
         this.switcherText.setValue(text);
+    }
+
+    public LiveData<User> register() {
+        User user = new User(null, userName, userMobile, userEmail, md5(password));
+        repository.addUser(user);
+        return repository.getUserWithEmail(user.getEmail());
+
     }
 }

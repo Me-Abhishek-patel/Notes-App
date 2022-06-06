@@ -70,6 +70,7 @@ public class AuthActivity extends AppCompatActivity {
                 case LOGIN_FRAGMENT_ID:
                     manager.beginTransaction().replace(R.id.fragment_container_view, registerFragment).commit();
                     authViewModel.setSwitcherText(getResources().getString(R.string.log_in));
+                    authViewModel.userEmail = "";
                     authViewModel.activeFragmentId = REGISTER_FRAGMENT_ID;
                     break;
                 case REGISTER_FRAGMENT_ID:

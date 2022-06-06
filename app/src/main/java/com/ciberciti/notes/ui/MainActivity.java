@@ -1,12 +1,14 @@
 package com.ciberciti.notes.ui;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.CursorWindow;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
@@ -91,10 +93,22 @@ public class MainActivity extends AppCompatActivity implements NotesAdapter.OnIt
         int id = item.getItemId();
 
         if (id == R.id.action_logout) {
-            mainActivityViewModel.logout();
-            Intent intent = new Intent(MainActivity.this, AuthActivity.class);
-            startActivity(intent);
-            finish();
+            new AlertDialog.Builder(this)
+                    .setTitle("LOGOUT")
+                    .setMessage("Do you really want to logout?")
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            mainActivityViewModel.logout();
+                            Intent intent = new Intent(MainActivity.this, AuthActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, null).show();
+
+
             return true;
         }
         return super.onOptionsItemSelected(item);

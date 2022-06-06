@@ -59,7 +59,7 @@ public class AddNoteActivity extends AppCompatActivity {
             loadNote();
         }
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_note);
-        validateTextLength();
+
         binding.setViewModel(addNoteActivityViewModel);
         addNoteActivityClickHandlers = new AddNoteActivityClickHandlers(this);
         binding.setClickHandler(addNoteActivityClickHandlers);
@@ -154,6 +154,7 @@ public class AddNoteActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_save) {
+            validateTextLength();
             saveNote();
 
             return true;
@@ -234,7 +235,6 @@ public class AddNoteActivity extends AppCompatActivity {
         }
 
         public void onAddImageClicked(View view) {
-            Toast.makeText(AddNoteActivity.this, "AddImage Clicked", Toast.LENGTH_SHORT).show();
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
             alertDialogBuilder.setMessage("Choose Image Source");
             alertDialogBuilder.setPositiveButton("Gallery",

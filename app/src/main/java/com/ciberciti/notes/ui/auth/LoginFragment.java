@@ -70,8 +70,6 @@ public class LoginFragment extends Fragment {
 
                     if (user.getPassword().equals(authViewModel.getPassword())) {
                         authViewModel.addSession(user.userId);
-                        Toast.makeText(getActivity(), "Mobile : LOgin Attempt" + authViewModel.getPassword(), Toast.LENGTH_SHORT).show();
-
                         Intent intent = new Intent(getActivity(), MainActivity.class);
                         startActivity(intent);
                         if (getActivity() != null)
